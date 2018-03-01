@@ -59,14 +59,15 @@ function ActiveProject(props){
 
 function CompletedProject(props){
     var parameters = props.param;
-    <Project haha={123} type = {"cp"} projectID = {1234} projectName = {"New Hair"} budget = {50}
-    endDate={"2/12/2018"} stylist={"Jason"} associate={"Eddie"}/>
+    // <Project haha={123} type = {"cp"} projectID = {1234} projectName = {"New Hair"} budget = {50}
+    // endDate={"2/12/2018"} stylist={"Jason"} associate={"Eddie"}/>
   return (
     <div className="active_project">
     <p className="project_name"> {parameters.projectName} </p>
     <p className="start_date">End Date: {parameters.endDate}</p>
     <p className="budget">Budget: {parameters.budget}</p>
     // <p class="image"> this.convertImageUrlToHtml()</p>
+    
 
     <p className="stylist_associate">Stylist: {parameters.stylist} <br></br>Associate: {parameters.associate} </p>
     </div>
