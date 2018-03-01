@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Nav from './Nav.js';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
+import InactiveProject from './InactiveProject';
+import ActiveProject from './ActiveProject';
+import CompletedProject from './CompletedProject'
 
 class App extends Component {
   render() {
@@ -13,12 +15,13 @@ class App extends Component {
             <Nav />
           </div>
           <div style={{ flex:'75%'}}>
-            <h1>hiii</h1>
+            <Route path="/active" component={headingActive} />
+            <Route path="/inactive" component={headingInactive} />
+            <Route path="/completed" component={headingCompleted} />
             <hr />
-            <Link to="/">newpage</Link>
-            <Link to="A">newpage</Link>
-            <Route path="/" component={About} />
-            <Route path="/A" component={Home}/>
+            <Route path="/active" component={ActiveProject} />
+            <Route path="/inactive" component={InactiveProject} />
+            <Route path="/completed" component={CompletedProject} />
           </div>
         </div>
       </Router>
@@ -26,15 +29,14 @@ class App extends Component {
   }
 }
 
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
+const headingActive = () => (
+  <h1>Active Projects</h1>
 );
-const About = () => (
-  <div>
-    <h2>About HI STUFF GOES HERE</h2>
-  </div>
+const headingInactive = () => (
+  <h1>Inactive Projects</h1>
+);
+const headingCompleted = () => (
+  <h1>Completed Projects</h1>
 );
 
 export default App;
