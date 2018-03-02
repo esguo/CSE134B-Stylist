@@ -1,42 +1,40 @@
-import React, { Component } from 'react';
-import './style/main.css';
+import React from 'react';
+const Project= (props) => {
 
-class Project extends Component {
-  render() {
-    var projectType = this.props.type;
-    console.log(projectType)
-    if(projectType === "ip"){
-      return <InactiveProject param = {this.props}/>;
-    }
-    else if(projectType === "cp"){
-      return <CompletedProject param = {this.props}/>;
-    }
-    else if(projectType === "ap"){
-      return <ActiveProject param = {this.props}/>;
-    }
-
-    return (
-      <WrongType param = {this.props}/>
-    )
+  var projectType = props.type;
+  console.log(projectType)
+  if(projectType === "ip"){
+    return <InactiveProject param = {props}/>;
+  }
+  else if(projectType === "cp"){
+    return <CompletedProject param = {props}/>;
+  }
+  else if(projectType === "ap"){
+    return <ActiveProject param = {props}/>;
   }
 
+  return (
+    <WrongType param = {props}/>
+  )
 
 }
 
-
-function InactiveProject(props){
+const InactiveProject = (props) => {
+  console.log(props);
+  const deleteInProject = (event) =>{
+    props.onDeleteInProject(event.target.value);
+  }
 
   var parameters = props.param;
-  // <Project haha={123} type = {"ip"} projectID = {1234} projectName = {"New Hair"} budget = {50}/>
+
   return (
-    <div className="active_project" id={parameters.projectID}>
+    <div className="active_project">
     <p className="project_name"> {parameters.projectName} </p>
     <p className="budget">Budget: {parameters.budget}</p>
     <p className="find_stylist">Find Your Personal Stylist</p>
-    <button onClick="finishIt2(this)" value={parameters.projectID} >Make Active</button>
+    <button onClick={deleteInProject} value={parameters.projectID} >Delete</button>
     </div>
   )
-
 }
 
 function ActiveProject(props){
@@ -58,16 +56,16 @@ function ActiveProject(props){
 }
 
 function CompletedProject(props){
-    var parameters = props.param;
-    // <Project haha={123} type = {"cp"} projectID = {1234} projectName = {"New Hair"} budget = {50}
-    // endDate={"2/12/2018"} stylist={"Jason"} associate={"Eddie"}/>
+  var parameters = props.param;
+  // <Project haha={123} type = {"cp"} projectID = {1234} projectName = {"New Hair"} budget = {50}
+  // endDate={"2/12/2018"} stylist={"Jason"} associate={"Eddie"}/>
   return (
     <div className="active_project">
     <p className="project_name"> {parameters.projectName} </p>
     <p className="start_date">End Date: {parameters.endDate}</p>
     <p className="budget">Budget: {parameters.budget}</p>
     // <p class="image"> this.convertImageUrlToHtml()</p>
-    
+
 
     <p className="stylist_associate">Stylist: {parameters.stylist} <br></br>Associate: {parameters.associate} </p>
     </div>
@@ -80,5 +78,9 @@ function WrongType(props){
     <p> The input type is {props.param.type} and we do not support it</p>
   )
 }
+
+
+
+
 
 export default Project;

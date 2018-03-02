@@ -3,14 +3,37 @@ import './style/main.css';
 import Project from './Project';
 
 class ActiveProject extends Component {
+
+  state = {projects : [{
+    type: "ap",
+    projectID :1234,
+    projectName: "New Hair",
+    budget : 150,
+    endDate: "2/12/2018",
+    stylist: "Jason",
+    associate: "Eddie"
+  }]};
+
+
   render() {
     return (
       <div id={"projects"}>
       <Project haha={123} type = {"ap"} projectID = {1234} projectName = {"New Hair"}
       budget = {50} endDate={"2/28/2018"} progressUrl={"something"} stylist={"Jason"} associate={"Eddie"}/>
+      <GetActiveProjects data = {this.state.projects}/>
       </div>
     );
   }
+}
+
+function GetActiveProjects(props){
+  console.log(props.data);
+  return(
+    <div>
+      {props.data.map(project => < Project {...project} />)}
+    </div>
+
+  )
 }
 
 export default ActiveProject;
