@@ -65,8 +65,6 @@ function CompletedProject(props){
     <p className="start_date">End Date: {parameters.endDate}</p>
     <p className="budget">Budget: {parameters.budget}</p>
     // <p class="image"> this.convertImageUrlToHtml()</p>
-
-
     <p className="stylist_associate">Stylist: {parameters.stylist} <br></br>Associate: {parameters.associate} </p>
     </div>
   )

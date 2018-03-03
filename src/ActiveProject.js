@@ -43,10 +43,6 @@ class ActiveProject extends Component {
       this.state = s;
 
     }
-
-    console.log(s);
-
-    console.log(this.state);
   }
   render() {
     return (

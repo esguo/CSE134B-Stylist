@@ -3,35 +3,57 @@ import './style/main.css';
 import Project from './Project';
 
 class CompletedProject extends Component {
-  state = {projects : [{
-    type: "cp",
-    projectID :1234,
-    projectName: "New Hair",
-    budget : 150,
-    endDate: "2/12/2018",
-    stylist: "Jason",
-    associate: "Eddie"
-  }]};
+
+  constructor(props){
+    super(props);
+    var cpData = localStorage.getItem("completedProject");
+    console.log(cpData);
+    if(cpData == null | cpData === ""){
+      this.state = {projects: []};
+    }
+    else{
+      var s = JSON.parse(cpData);
+      this.state = s;
+    }
+  }
+
   render() {
     return (
       <div id={"projects"}>
-      <Project haha={123} type = {"cp"} projectID = {1234} projectName = {"New Hair"} budget = {50}
-      endDate={"2/12/2018"} stylist={"Jason"} associate={"Eddie"}/>
-            <GetCompletedProjects data = {this.state.projects}/>
+      <GetCompletedProjects data = {this.state.projects} />
       </div>
     );
   }
+
 }
 
-function GetCompletedProjects(props){
+const GetCompletedProjects = (props) => {
   console.log(props.data);
   return(
     <div>
-      {props.data.map(project => < Project {...project} />)}
-    </div>
+    {props.data.map(project => < CompletedProjectBox {...project} />)}
+      </div>
 
-  )
-}
+    )
+  }
+
+  const CompletedProjectBox = (props) => {
+    console.log(props);
+
+    const finishProject = (event) => {
+      props.onFinishProjectInList(event.target.value)
+    }
+
+    return (
+      <div className="active_project">
+      <p className="project_name"> {props.projectName} </p>
+      <p className="start_date">End Date: {props.endDate}</p>
+      <p className="budget">Budget: {props.budget}</p>
+      // <p class="image"> this.convertImageUrlToHtml()</p>
+      <p className="stylist_associate">Stylist: {props.stylist} <br></br>Associate: {props.associate} </p>
+      </div>
+    )
+  }
 
 
 export default CompletedProject;
