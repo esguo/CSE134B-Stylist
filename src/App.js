@@ -10,7 +10,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div class="container" style={{height: '100%'}}>
+        <div className="container" style={{height: '100%'}}>
           <div style={{width: '25%', borderStyle:'solid', textAlign:'center'}}>
             <Nav />
           </div>
