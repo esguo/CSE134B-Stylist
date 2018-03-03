@@ -17,6 +17,7 @@ class InactiveProject extends Component {
       }
     }
     this.setState({projects: data});
+    localStorage.setItem("inactiveProject", JSON.stringify(this.state));
     console.log(this.state);
   }
   togglePopup(projectID) {
@@ -41,7 +42,8 @@ class InactiveProject extends Component {
         console.log(data[i]);
       }
     }
-    this.setState({projects: data});
+    this.setState({showPopup: false, projects: data});
+    localStorage.setItem("inactiveProject", JSON.stringify(this.state));
   }
 
   activateProject(projectID){
@@ -76,19 +78,25 @@ class InactiveProject extends Component {
     localStorage.setItem("activeProject", JSON.stringify(ap));
 
     this.deleteInacticeProject(projectID);
-    localStorage.setItem("inactiveProject", data);
   }
 
 
   constructor(props){
     super(props);
 
-    //TODO: Read state from local Storage
-    this.state = {projects : [{
-      projectID :1234,
-      projectName: "New Hair",
-      budget : 150
-    }]};
+    var ipData = localStorage.getItem("inactiveProject");
+
+    if(ipData == null | ipData === ""){
+      this.state = {projects: [],
+        showPopup: false,
+      editingProjectID: ""
+    };
+    }
+    else{
+      console.log(ipData);
+      this.state = JSON.parse(ipData);
+      this.state.showPopup = false;
+    }
   }
 
 

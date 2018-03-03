@@ -7,6 +7,7 @@ import ActiveProject from './ActiveProject';
 import CompletedProject from './CompletedProject';
 import Messages from './Messages';
 import MessagesStyle from './MessagesStyle';
+import CreateProject from './CreateProject';
 
 class App extends Component {
   render() {
@@ -23,12 +24,14 @@ class App extends Component {
             <Route path="/completed" component={headingCompleted} />
             <Route path="/messages" component={headingMessage} />
             <Route path="/messagesStyle" component={headingMessage} />
+            <Route path="/create" component={headingCreateProject} />
             <hr />
             <Route path="/active" component={ActiveProject} />
             <Route path="/inactive" component={InactiveProject} />
             <Route path="/completed" component={CompletedProject} />
             <Route path="/messages" component={Messages} />
             <Route path="/messagesStyle" component={MessagesStyle} />
+            <Route path="/create" component={CreateProject} />
           </div>
         </div>
       </Router>
@@ -45,6 +48,9 @@ const headingInactive = () => (
 );
 const headingCompleted = () => (
   <h1>Completed Projects</h1>
+);
+const headingCreateProject = () => (
+  <h1>Create Project</h1>
 );
 const headingMessage = () => (
   <h1>Messages</h1>

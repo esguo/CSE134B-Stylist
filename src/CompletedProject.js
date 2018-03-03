@@ -49,7 +49,8 @@ const GetCompletedProjects = (props) => {
       <p className="project_name"> {props.projectName} </p>
       <p className="start_date">End Date: {props.endDate}</p>
       <p className="budget">Budget: {props.budget}</p>
-      // <p class="image"> this.convertImageUrlToHtml()</p>
+      <p className="image"><img src={require('./photos/hair.png')} className="item" alt="item image"></img>
+      <img src={require('./photos/shirt.png')} className="item" alt="item image"></img></p>
       <p className="stylist_associate">Stylist: {props.stylist} <br></br>Associate: {props.associate} </p>
       </div>
     )

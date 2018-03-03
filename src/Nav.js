@@ -16,6 +16,7 @@ class Nav extends Component {
           <div className="projects" style={{textAlign: 'center'}}>
             <h1 className="heading">Projects</h1>
             <ul style={{display:'inline-block', textAlign: 'left'}}>
+            <li><Link to="/create">Create Project</Link></li>
               <li><Link to="/active">Active</Link></li>
               <li><Link to="/inactive">Inactive</Link></li>
               <li><Link to="/completed">Completed</Link></li>
