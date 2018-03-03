@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import EditProject from './EditProject';
 import './style/main.css';
+import {getTodayDate } from './utils.js';
 
 class InactiveProject extends Component {
-  state = {projects : [{
-    type: "ip",
-    projectID :1234,
-    projectName: "New Hair",
-    budget : 150
-  }]};
+
 
   deleteInacticeProject = (projectID) => {
-    console.log(data);
     var data = this.state.projects;
+    console.log(data);
     for(var i = 0; i < data.length; i++){
       if(data[i].projectID == projectID){
         console.log(data);
@@ -23,11 +19,6 @@ class InactiveProject extends Component {
     this.setState({projects: data});
     console.log(this.state);
   }
-
-  editInactiveProject = (projectID) => {
-    console.log(projectID);
-  }
-
   togglePopup(projectID) {
     console.log("Editing " + projectID);
     this.setState({
@@ -53,11 +44,59 @@ class InactiveProject extends Component {
     this.setState({projects: data});
   }
 
+  activateProject(projectID){
+    console.log(projectID);
+    var temp = localStorage.getItem("activeProject");
+    var ap;
+    console.log(temp);
+    if(temp == null | temp === ""){
+      ap = {projects: []};
+    }
+    else{
+      ap = JSON.parse(temp);
+    }
+
+    console.log(ap);
+    var data = this.state.projects;
+    for(var i = 0; i < data.length; i++){
+      if(data[i].projectID == projectID){
+        console.log(ap);
+        if(ap == null) ap = {projects: []};
+        var temp = data[i];
+        console.log(temp);
+        temp.stylist = "Eddie";
+        temp.associate = "Jason";
+        temp.endDate = getTodayDate();
+        console.log(temp);
+        ap.projects.push(temp);
+      }
+    }
+    console.log("Storing proejct into activeProject");
+    console.log(ap);
+    localStorage.setItem("activeProject", JSON.stringify(ap));
+
+    this.deleteInacticeProject(projectID);
+    localStorage.setItem("inactiveProject", data);
+  }
+
+
+  constructor(props){
+    super(props);
+
+    //TODO: Read state from local Storage
+    this.state = {projects : [{
+      projectID :1234,
+      projectName: "New Hair",
+      budget : 150
+    }]};
+  }
+
+
   render() {
     return (
       <div id={"projects"}>
       <GetInactiveProjects data = {this.state.projects} onDeleteInactiveProject = {this.deleteInacticeProject}
-      onEditInactiveProject = {this.togglePopup.bind(this)}/>
+      onEditInactiveProject = {this.togglePopup.bind(this)} onActivateProject = {this.activateProject.bind(this)}/>
 
       {this.state.showPopup ?
         <div className='popup'>
@@ -81,7 +120,7 @@ const GetInactiveProjects = (props) => {
   return(
     <div>
     {props.data.map(project => < InactiveProjectBox {...project} onDeleteInactiveProjectList = {props.onDeleteInactiveProject}
-      onEditInactiveProjectList = {props.onEditInactiveProject} />)}
+      onEditInactiveProjectList = {props.onEditInactiveProject} onActivateInactiveProjectList = {props.onActivateProject}/>)}
       </div>
 
     )
@@ -99,6 +138,11 @@ const GetInactiveProjects = (props) => {
       props.onEditInactiveProjectList(event.target.value);
     }
 
+    const activateProject = (event) => {
+      console.log(event);
+      props.onActivateInactiveProjectList(event.target.value);
+    }
+
 
     return (
       <div className="active_project">
@@ -107,6 +151,7 @@ const GetInactiveProjects = (props) => {
       <p className="find_stylist">Find Your Personal Stylist</p>
       <button onClick={deleteProject} value={props.projectID}>Delete</button>
       <button onClick={editProject} value={props.projectID}>Edit</button>
+      <button onClick={activateProject} value={props.projectID}>Make It Active</button>
       </div>
     )
   }
