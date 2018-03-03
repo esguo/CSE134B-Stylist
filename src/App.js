@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './style/styles.css';
 import Nav from './Nav.js';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import InactiveProject from './InactiveProject';
@@ -10,14 +10,15 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <div style={{flex:'25%', borderStyle:'solid', textAlign:'center', float: 'left'}}>
+        <div class="container" style={{height: '100%'}}>
+          <div style={{width: '25%', borderStyle:'solid', textAlign:'center'}}>
             <Nav />
           </div>
-          <div style={{ flex:'75%'}}>
+          <div style={{ width: '75%', padding: '20px'}}>
             <Route path="/active" component={headingActive} />
             <Route path="/inactive" component={headingInactive} />
             <Route path="/completed" component={headingCompleted} />
+            <Route path="/messages" component={headingMessage} />
             <hr />
             <Route path="/active" component={ActiveProject} />
             <Route path="/inactive" component={InactiveProject} />
@@ -37,6 +38,9 @@ const headingInactive = () => (
 );
 const headingCompleted = () => (
   <h1>Completed Projects</h1>
+);
+const headingMessage = () => (
+  <h1>Messages</h1>
 );
 
 export default App;

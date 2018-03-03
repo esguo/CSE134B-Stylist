@@ -6,6 +6,12 @@ html, body {
   display: block;
   height: 100%;
 }
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 5%;
+  padding-right: 5%;
+}
 .main-page{
   padding-left: 3%;
   padding-right: 3%;
@@ -188,7 +194,6 @@ img{
 }
 
 .login .img img{
-
   max-width: 80%;
   max-height:80%;
   height: auto;
