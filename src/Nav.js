@@ -22,6 +22,7 @@ class Nav extends Component {
             </ul>
           </div>
           <h2 className="heading"><Link to="/messages">Messages</Link></h2>
+          <h2 className="heading"><Link to="/messagesStyle">Messages (Stylist)</Link></h2>
           <a href="explore.html"><p className="heading"> Explore </p></a>
 
         </div>
