@@ -19,7 +19,7 @@ describe('Compelted Project via Enzyme', () => {
   it('Completed Project page contains an id projets ', () => {
     const wrapper = shallow(<CompletedProject />);
     expect(wrapper.find(GetCompletedProjects).length).toBe(1);
-
+    //TODO:
     // expect(wrapper.find(CompletedProjectBox).length).toBe(1);
   });
 
