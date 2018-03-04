@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './style/styles.css';
 import Nav from './Nav.js';
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import InactiveProject from './InactiveProject';
+import {InactiveProject} from './InactiveProject';
 import ActiveProject from './ActiveProject';
 import CompletedProject from './CompletedProject';
 import Messages from './Messages';

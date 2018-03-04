@@ -3,7 +3,7 @@ import EditProject from './EditProject';
 import './style/main.css';
 import {getTodayDate } from './utils.js';
 
-class InactiveProject extends Component {
+export class InactiveProject extends Component {
 
 
   deleteInacticeProject = (projectID) => {
@@ -17,7 +17,7 @@ class InactiveProject extends Component {
       }
     }
     this.setState({projects: data});
-    localStorage.setItem("inactiveProject", JSON.stringify(this.state));
+    // localStorage.setItem("inactiveProject", JSON.stringify(this.state));
     console.log(this.state);
   }
   togglePopup(projectID) {
@@ -43,12 +43,13 @@ class InactiveProject extends Component {
       }
     }
     this.setState({showPopup: false, projects: data});
-    localStorage.setItem("inactiveProject", JSON.stringify(this.state));
+    // localStorage.setItem("inactiveProject", JSON.stringify(this.state));
   }
 
   activateProject(projectID){
     console.log(projectID);
-    var temp = localStorage.getItem("activeProject");
+    var temp;
+    // var temp = localStorage.getItem("activeProject");
     var ap;
     console.log(temp);
     if(temp == null | temp === ""){
@@ -75,7 +76,7 @@ class InactiveProject extends Component {
     }
     console.log("Storing proejct into activeProject");
     console.log(ap);
-    localStorage.setItem("activeProject", JSON.stringify(ap));
+    // localStorage.setItem("activeProject", JSON.stringify(ap));
 
     this.deleteInacticeProject(projectID);
   }
@@ -84,84 +85,86 @@ class InactiveProject extends Component {
   constructor(props){
     super(props);
 
-    var ipData = localStorage.getItem("inactiveProject");
+    var ipData ;
+    // = localStorage.getItem("inactiveProject");
 
-    if(ipData == null | ipData === ""){
-      this.state = {projects: [],
-        showPopup: false,
-      editingProjectID: ""
-    };
+    // if(ipData == null | ipData === ""){
+    //   this.state = {projects: [],
+    //     showPopup: false,
+    //   editingProjectID: ""
+    // };
+    // }
+    // else{
+    //   console.log(ipData);
+    //   this.state = JSON.parse(ipData);
+    //   this.state.showPopup = false;
+    // }
+    this.state = {projects: [{projectID :1234,
+      projectName: "New Hair",
+      budget : 150}]}
     }
-    else{
-      console.log(ipData);
-      this.state = JSON.parse(ipData);
-      this.state.showPopup = false;
+
+
+    render() {
+      return (
+        <div id={"projects"}>
+        <GetInactiveProjects data = {this.state.projects} onDeleteInactiveProject = {this.deleteInacticeProject}
+        onEditInactiveProject = {this.togglePopup.bind(this)} onActivateProject = {this.activateProject.bind(this)}/>
+
+        {this.state.showPopup ?
+          <div className='popup'>
+          <div className='popup_inner'>
+          <EditProject
+          closePopup={this.togglePopup.bind(this)}
+          submitChange = {this.changeProjectInfo.bind(this)}
+          />
+          </div>
+          </div>
+          : null
+        }
+
+        </div>
+      );
     }
   }
 
-
-  render() {
-    return (
-      <div id={"projects"}>
-      <GetInactiveProjects data = {this.state.projects} onDeleteInactiveProject = {this.deleteInacticeProject}
-      onEditInactiveProject = {this.togglePopup.bind(this)} onActivateProject = {this.activateProject.bind(this)}/>
-
-      {this.state.showPopup ?
-        <div className='popup'>
-        <div className='popup_inner'>
-        <EditProject
-        closePopup={this.togglePopup.bind(this)}
-        submitChange = {this.changeProjectInfo.bind(this)}
-        />
+  export const GetInactiveProjects = (props) => {
+    console.log(props.data);
+    return(
+      <div>
+      {props.data.map(project => < InactiveProjectBox {...project} onDeleteInactiveProjectList = {props.onDeleteInactiveProject}
+        onEditInactiveProjectList = {props.onEditInactiveProject} onActivateInactiveProjectList = {props.onActivateProject}/>)}
         </div>
-        </div>
-        : null
+
+      )
+    }
+
+     export const InactiveProjectBox = (props) => {
+      console.log(props);
+      const deleteProject = (event) =>{
+        console.log("Going to remove project:" + props.projectID);
+        props.onDeleteInactiveProjectList(event.target.value);
       }
 
-      </div>
-    );
-  }
-}
+      const editProject = (event) => {
+        console.log(event);
+        props.onEditInactiveProjectList(event.target.value);
+      }
 
-const GetInactiveProjects = (props) => {
-  console.log(props.data);
-  return(
-    <div>
-    {props.data.map(project => < InactiveProjectBox {...project} onDeleteInactiveProjectList = {props.onDeleteInactiveProject}
-      onEditInactiveProjectList = {props.onEditInactiveProject} onActivateInactiveProjectList = {props.onActivateProject}/>)}
-      </div>
+      const activateProject = (event) => {
+        console.log(event);
+        props.onActivateInactiveProjectList(event.target.value);
+      }
 
-    )
-  }
 
-  const InactiveProjectBox = (props) => {
-    console.log(props);
-    const deleteProject = (event) =>{
-      console.log("Going to remove project:" + props.projectID);
-      props.onDeleteInactiveProjectList(event.target.value);
+      return (
+        <div className="active_project">
+        <p className="project_name"> {props.projectName} </p>
+        <p className="budget">Budget: {props.budget}</p>
+        <p className="find_stylist">Find Your Personal Stylist</p>
+        <button onClick={deleteProject} value={props.projectID}>Delete</button>
+        <button onClick={editProject} value={props.projectID}>Edit</button>
+        <button onClick={activateProject} value={props.projectID}>Make It Active</button>
+        </div>
+      )
     }
-
-    const editProject = (event) => {
-      console.log(event);
-      props.onEditInactiveProjectList(event.target.value);
-    }
-
-    const activateProject = (event) => {
-      console.log(event);
-      props.onActivateInactiveProjectList(event.target.value);
-    }
-
-
-    return (
-      <div className="active_project">
-      <p className="project_name"> {props.projectName} </p>
-      <p className="budget">Budget: {props.budget}</p>
-      <p className="find_stylist">Find Your Personal Stylist</p>
-      <button onClick={deleteProject} value={props.projectID}>Delete</button>
-      <button onClick={editProject} value={props.projectID}>Edit</button>
-      <button onClick={activateProject} value={props.projectID}>Make It Active</button>
-      </div>
-    )
-  }
-
-  export default InactiveProject;

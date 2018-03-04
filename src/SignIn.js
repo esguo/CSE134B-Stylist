@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './style/styles_home.css';
 import Nav from './Nav.js';
 import { BrowserRouter as Router, Route, Link} from "react-router-dom";
-import InactiveProject from './InactiveProject';
+import {InactiveProject} from './InactiveProject';
 import ActiveProject from './ActiveProject';
 import CompletedProject from './CompletedProject';
 import Messages from './Messages';
@@ -39,7 +39,7 @@ class Signin extends Component {
                 </div>
                 {/*<input type="submit" class ="logBtn" value="Login">*/}
                 <p><Link to='/signedin'>Sign In</Link></p>
-                <p className="signup" id="form2" onclick="signForm(this)"> Sign up </p>
+                <p className="signup" id="form2" onClick="signForm(this)"> Sign up </p>
               </form>
             </div>
           </div>
