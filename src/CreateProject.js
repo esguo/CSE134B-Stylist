@@ -24,7 +24,8 @@ class CreatProject extends Component {
 
   handleSubmit(event) {
     console.log(this.state);
-    var data = localStorage.getItem("inactiveProject");
+    var data = null;
+    // localStorage.getItem("inactiveProject");
     var ip;
     if(data == null | data === ""){
       ip =
@@ -40,7 +41,7 @@ class CreatProject extends Component {
     console.log(ip);
     ip.projects.push(temp);
     console.log(ip);
-    localStorage.setItem("inactiveProject", JSON.stringify(ip));
+    // localStorage.setItem("inactiveProject", JSON.stringify(ip));
     alert('Success!');
   }
 

@@ -2,19 +2,38 @@ import React, { Component } from 'react';
 import './style/main.css';
 import Project from './Project';
 
-class CompletedProject extends Component {
+export class CompletedProject extends Component {
 
   constructor(props){
     super(props);
-    var cpData = localStorage.getItem("completedProject");
-    console.log(cpData);
-    if(cpData == null | cpData === ""){
-      this.state = {projects: []};
-    }
-    else{
-      var s = JSON.parse(cpData);
-      this.state = s;
-    }
+    // var cpData = localStorage.getItem("completedProject");
+    // console.log(cpData);
+    // if(cpData == null | cpData === ""){
+    //   this.state = {projects: []};
+    // }
+    // else{
+    //   var s = JSON.parse(cpData);
+    //   this.state = s;
+    // }
+
+    this.state = {projects : [{
+    projectID :1234,
+    projectName: "New Hair",
+    budget : 150,
+    endDate: "2/12/2018",
+    stylist: "Jason",
+    associate: "Eddie"
+  },
+  {
+  projectID :1234,
+  projectName: "New Hair",
+  budget : 150,
+  endDate: "2/12/2018",
+  stylist: "Jason",
+  associate: "Eddie"
+}
+
+]};
   }
 
   render() {
@@ -27,7 +46,7 @@ class CompletedProject extends Component {
 
 }
 
-const GetCompletedProjects = (props) => {
+export const GetCompletedProjects = (props) => {
   console.log(props.data);
   return(
     <div>
@@ -37,7 +56,7 @@ const GetCompletedProjects = (props) => {
     )
   }
 
-  const CompletedProjectBox = (props) => {
+  export const CompletedProjectBox = (props) => {
     console.log(props);
 
     const finishProject = (event) => {
@@ -55,6 +74,3 @@ const GetCompletedProjects = (props) => {
       </div>
     )
   }
-
-
-export default CompletedProject;
