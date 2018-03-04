@@ -16,16 +16,14 @@ class Nav extends Component {
           <div className="projects" style={{textAlign: 'center'}}>
             <h1 className="heading">Projects</h1>
             <ul style={{display:'inline-block', textAlign: 'left'}}>
-            <li><Link to="/create">Create Project</Link></li>
-              <li><Link to="/active">Active</Link></li>
-              <li><Link to="/inactive">Inactive</Link></li>
-              <li><Link to="/completed">Completed</Link></li>
+            <li><Link to="/signedin/create">Create Project</Link></li>
+              <li><Link to="/signedin/active">Active</Link></li>
+              <li><Link to="/signedin/inactive">Inactive</Link></li>
+              <li><Link to="/signedin/completed">Completed</Link></li>
             </ul>
           </div>
-          <h2 className="heading"><Link to="/messages">Messages</Link></h2>
-          <h2 className="heading"><Link to="/messagesStyle">Messages (Stylist)</Link></h2>
-          <a href="explore.html"><p className="heading"> Explore </p></a>
-
+          <h2 className="heading"><Link to="/signedin/messages">Messages</Link></h2>
+          <h2 className="heading"><Link to="/signedin/messagesStyle">Messages (Stylist)</Link></h2>
         </div>
       </div>
     );

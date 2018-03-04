@@ -40,23 +40,21 @@ class MessagesStyle extends Component {
 
   render() {
     return (
-      <div>
-        <div className="container" style={{padding: '0px', height: '100%', minHeight: '600px'}}>
-          <div style={{width: '25%', borderStyle: 'solid'}}>
-            <h3>John Doe</h3>
-            <h4>How about this st...</h4>
-          </div>
-          <div style={{width: '75%', borderStyle: 'solid'}}>
-            <div className="row" style={{height: 'calc(100% - 80px)', width: '100%'}}>
-              <div className="content" id="content" />
-              <div className="row" style={{height: '80px', width: '100%'}}>
-                <div className="input_and_send">
-                  <div className="column" style={{borderTop: 'solid', height: '100%', width: '85%'}}>
-                    <input style={{height: '100%', width: '100%'}} className="text_input" placeholder="Please say something..." id="inputBox" type="input" />
-                  </div>
-                  <div className="column" style={{height: '100%', width: '15%', borderTop: 'solid'}}>
-                    <button type="button" className="send" onClick={this.sendMessage} style={{height: '100%', width: '100%'}}>Send</button>
-                  </div>
+      <div className="container" style={{padding: '0px', height: '100%'}}>
+        <div style={{width: '25%', borderStyle: 'solid'}}>
+          <h3>John Doe</h3>
+          <h4>How about this st...</h4>
+        </div>
+        <div style={{width: '75%', borderStyle: 'solid'}}>
+          <div className="row" style={{height: 'calc(100% - 80px)', width: '100%'}}>
+            <div className="content" id="content" />
+            <div className="row" style={{height: '80px', width: '100%'}}>
+              <div className="input_and_send">
+                <div className="column" style={{borderTop: 'solid', height: '100%', width: '85%'}}>
+                  <input style={{height: '100%', width: '100%'}} className="text_input" placeholder="Please say something..." id="inputBox" type="input" />
+                </div>
+                <div className="column" style={{height: '100%', width: '15%', borderTop: 'solid'}}>
+                  <button type="button" className="send" onClick={this.sendMessage} style={{height: '100%', width: '100%'}}>Send</button>
                 </div>
               </div>
             </div>
