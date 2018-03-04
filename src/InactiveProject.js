@@ -132,15 +132,14 @@ export class InactiveProject extends Component {
     console.log(props.data);
     return(
       <div>
-      {props.data.map(project => < InactiveProjectBox {...project} onDeleteInactiveProjectList = {props.onDeleteInactiveProject}
-        onEditInactiveProjectList = {props.onEditInactiveProject} onActivateInactiveProjectList = {props.onActivateProject}/>)}
+        {props.data.map(project => < InactiveProjectBox {...project} onDeleteInactiveProjectList = {props.onDeleteInactiveProject}
+          onEditInactiveProjectList = {props.onEditInactiveProject} onActivateInactiveProjectList = {props.onActivateProject}/>)}
         </div>
 
       )
     }
 
-     export const InactiveProjectBox = (props) => {
-      console.log(props);
+    export const InactiveProjectBox = (props) => {
       const deleteProject = (event) =>{
         console.log("Going to remove project:" + props.projectID);
         props.onDeleteInactiveProjectList(event.target.value);
@@ -159,12 +158,14 @@ export class InactiveProject extends Component {
 
       return (
         <div className="active_project">
-        <p className="project_name"> {props.projectName} </p>
-        <p className="budget">Budget: {props.budget}</p>
-        <p className="find_stylist">Find Your Personal Stylist</p>
-        <button onClick={deleteProject} value={props.projectID}>Delete</button>
-        <button onClick={editProject} value={props.projectID}>Edit</button>
-        <button onClick={activateProject} value={props.projectID}>Make It Active</button>
+          <p className="project_name"> {props.projectName} </p>
+          <p className="budget">Budget: {props.budget}</p>
+          <p className="find_stylist">Find Your Personal Stylist</p>
+          <button onClick={deleteProject} value={props.projectID}>Delete</button>
+          <button onClick={editProject} value={props.projectID}>Edit</button>
+          <button onClick={activateProject} value={props.projectID}>Make It Active</button>
         </div>
       )
     }
+
+export default InactiveProject;

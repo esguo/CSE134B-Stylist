@@ -57,7 +57,6 @@ export const GetCompletedProjects = (props) => {
   }
 
   export const CompletedProjectBox = (props) => {
-    console.log(props);
 
     const finishProject = (event) => {
       props.onFinishProjectInList(event.target.value)

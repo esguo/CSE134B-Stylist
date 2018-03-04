@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import './style/message.css';
 
+beforeAll(() => {
+   global.localStorage = {
+      i2x_token: 'someToken',
+      getItem: function () {
+         return 'someToken'
+      }
+   };
+});
 
-class Messages extends Component {
+export class Messages extends Component {
 
   sendMessage(){
     var input = document.getElementById("inputBox").value;
@@ -23,9 +31,7 @@ class Messages extends Component {
 
   componentDidMount(){
     var messages = [];
-    //localStorage.clear();
-    messages = JSON.parse(localStorage.getItem("msg"));
-    console.log(messages);
+    messages = {id: "0", msg: "this is a test"};
     if (!messages)
     return;
     for(var i=0; i<messages.length; i++){

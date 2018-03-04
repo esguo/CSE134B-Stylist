@@ -39,7 +39,6 @@ class Signin extends Component {
                 </div>
                 {/*<input type="submit" class ="logBtn" value="Login">*/}
                 <p><Link to='/signedin'>Sign In</Link></p>
-                <p className="signup" id="form2" onClick="signForm(this)"> Sign up </p>
               </form>
             </div>
           </div>

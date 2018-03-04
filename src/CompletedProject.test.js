@@ -7,7 +7,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() })
 
-describe('Compelted Project via Enzyme', () => {
+describe('Completed Project via Enzyme', () => {
 
 
   it('Completed Project page contains an id projects', () => {
@@ -16,11 +16,16 @@ describe('Compelted Project via Enzyme', () => {
     expect(wrapper.find('#projects').length).toBe(1);
   });
 
-  it('Completed Project page contains an id projets ', () => {
+  it('Completed Project page contains projects', () => {
     const wrapper = shallow(<CompletedProject />);
     expect(wrapper.find(GetCompletedProjects).length).toBe(1);
-    //TODO:
-    // expect(wrapper.find(CompletedProjectBox).length).toBe(1);
+    //expect(wrapper.find(CompletedProjectBox).length).toBe(1);
+  });
+
+  it('Completed Project page contains projects', () => {
+    const wrapper = shallow(<CompletedProjectBox />);
+    expect(wrapper.find('.active_project').length).toBe(1);
+    //expect(wrapper.find(CompletedProjectBox).length).toBe(1);
   });
 
 
