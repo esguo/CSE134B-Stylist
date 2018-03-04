@@ -3,7 +3,7 @@ import './style/styles_home.css';
 import Nav from './Nav.js';
 import { BrowserRouter as Router, Route, Link} from "react-router-dom";
 import {InactiveProject} from './InactiveProject';
-import ActiveProject from './ActiveProject';
+import {ActiveProject} from './ActiveProject';
 import {CompletedProject} from './CompletedProject';
 import Messages from './Messages';
 import MessagesStyle from './MessagesStyle';

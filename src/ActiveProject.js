@@ -3,12 +3,13 @@ import './style/main.css';
 import Project from './Project';
 import {getTodayDate } from './utils.js';
 
-class ActiveProject extends Component {
+export class ActiveProject extends Component {
 
   finishProject(projectID){
     console.log(projectID);
 
-    var cp = JSON.parse(localStorage.getItem("completedProject"));
+    var cp =null;
+     // = JSON.parse(localStorage.getItem("completedProject"));
     console.log(cp);
     console.log(this.state);
     var data = this.state.projects;
@@ -24,25 +25,35 @@ class ActiveProject extends Component {
       }
     }
 
-    localStorage.setItem("completedProject", JSON.stringify(cp));
+    // localStorage.setItem("completedProject", JSON.stringify(cp));
 
-    localStorage.setItem("activeProject", data);
+    // localStorage.setItem("activeProject", data);
     this.setState({projects: data});
 
   }
 
   constructor(props){
     super(props);
-    var apData = localStorage.getItem("activeProject");
-    console.log(apData);
-    if(apData == null | apData === ""){
-      this.state = {projects: []};
-    }
-    else{
-      var s = JSON.parse(apData);
-      this.state = s;
-
-    }
+    var apData = null;
+     // = localStorage.getItem("activeProject");
+    // console.log(apData);
+    // if(apData == null | apData === ""){
+    //   this.state = {projects: []};
+    // }
+    // else{
+    //   var s = JSON.parse(apData);
+    //   this.state = s;
+    //
+    // }
+    this.state = {projects : [{
+    projectID :1234,
+    projectName: "New Hair",
+    budget : 150,
+    endDate: "2/12/2018",
+    stylist: "Jason",
+    associate: "Eddie",
+    key:123
+  }]};
   }
   render() {
     return (
@@ -54,7 +65,7 @@ class ActiveProject extends Component {
 
 }
 
-const GetActiveProjects = (props) => {
+export const GetActiveProjects = (props) => {
   console.log(props.data);
   return(
     <div>
@@ -64,7 +75,7 @@ const GetActiveProjects = (props) => {
     )
   }
 
-  const ActiveProjectBox = (props) => {
+  export const ActiveProjectBox = (props) => {
     console.log(props);
 
     const finishProject = (event) => {
@@ -82,11 +93,3 @@ const GetActiveProjects = (props) => {
       </div>
     )
   }
-
-
-
-
-
-
-
-export default ActiveProject;
