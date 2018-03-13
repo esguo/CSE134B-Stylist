@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import './style/main.css';
-import {uuid} from './utils.js';
+import {uuid, getTodayDate} from './utils.js';
+import * as projectActions from './actions/projectActions'
+import * as projectStatus from './projectStatus'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 class CreatProject extends Component {
 
   constructor(props){
     super(props);
-    this.state = {projectName: '', budget: ''};
+    this.state = {projects: props.projects};
+
 
     this.handleProjectNameChange = this.handleProjectNameChange.bind(this);
     this.handleBudgetChange = this.handleBudgetChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
   handleProjectNameChange(event) {
@@ -23,24 +29,15 @@ class CreatProject extends Component {
 
 
   handleSubmit(event) {
-    console.log(this.state);
-    var data = localStorage.getItem("inactiveProject");
-    var ip;
-    if(data == null | data === ""){
-      ip =
-      {projects: [],
-        showPopup: false,
-      editingProjectID: ""
-    }
-    }
-    else{
-      ip = JSON.parse(data)
-    }
-    var temp = {projectName: this.state.projectName, budget: this.state.budget, projectID: uuid()}
-    console.log(ip);
-    ip.projects.push(temp);
-    console.log(ip);
-    localStorage.setItem("inactiveProject", JSON.stringify(ip));
+    alert(JSON.stringify(this.props));
+    var projectName = this.state.projectName;
+    var budget = this.state.budget;
+
+    var project = {projectName: {projectName},
+    budget: {budget}, date: getTodayDate(), stylist: 'Eddie',
+    associate: 'Jason', status: projectStatus.INACTIVE_PROJECT};
+    // alert(JSON.stringify(this.props.projects))
+    this.props.actions.saveProject(project);
     alert('Success!');
   }
 
@@ -48,9 +45,11 @@ class CreatProject extends Component {
   render() {
     return (
       <div>
+        <button onClick ={this.handleSubmit}> test </button>
       <div className="column" style={{marginTop: 5, height: '100%', width: '100%', flex: '40%'}}>
       <h2 style={{margin: 50}}>Project Name</h2>
       <form onSubmit={this.handleSubmit}>
+
       <label>
       <input type="text" id="name" placeholder="Name..." value={this.state.value} onChange={this.handleProjectNameChange} />
 
@@ -75,4 +74,23 @@ class CreatProject extends Component {
 
 }
 
-export default CreatProject;
+
+
+function mapStateToProps(state, ownProps) {
+  console.log(state)
+  console.log(ownProps)
+  return {
+    projects: state
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(projectActions, dispatch)
+  };
+}
+
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreatProject);
