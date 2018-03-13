@@ -15,8 +15,12 @@ import initialState from './reducers/initialState'
 
 const store = configureStore(initialState);
 
- ReactDOM.render(
-   <Provider store={store}>
-      <App />
-  </Provider>,document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+  <App />
+  </Provider>,document.getElementById('root')
+);
+
+
+
 registerServiceWorker();

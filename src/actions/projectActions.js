@@ -17,5 +17,4 @@ export function saveProject(project){
   return function(dispatch, getState){
       dispatch(createProjectSuccess(project))
   }
-
 }
