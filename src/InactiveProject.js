@@ -2,24 +2,15 @@ import React, { Component } from 'react';
 import EditProject from './EditProject';
 import './style/main.css';
 import {getTodayDate } from './utils.js';
+import * as projectStatus from './projectStatus'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as projectActions from './actions/projectActions'
 
 class InactiveProject extends Component {
 
 
-  deleteInacticeProject = (projectID) => {
-    var data = this.state.projects;
-    console.log(data);
-    for(var i = 0; i < data.length; i++){
-      if(data[i].projectID == projectID){
-        console.log(data);
-        data.splice(i,1);
-        console.log(data);
-      }
-    }
-    this.setState({projects: data});
-    localStorage.setItem("inactiveProject", JSON.stringify(this.state));
-    console.log(this.state);
-  }
+
   togglePopup(projectID) {
     console.log("Editing " + projectID);
     this.setState({
@@ -27,83 +18,33 @@ class InactiveProject extends Component {
       editingProjectID: projectID
     });
   }
-
-  changeProjectInfo(state){
-    console.log("Going to change the state");
-    console.log(state);
-
-    var data = this.state.projects;
-    var pID = this.state.editingProjectID;
-    for(var i = 0; i < data.length; i++){
-      if(data[i].projectID == pID){
-        console.log(data[i]);
-        data[i].projectName = state.projectName;
-        data[i].budget = state.budget;
-        console.log(data[i]);
-      }
-    }
-    this.setState({showPopup: false, projects: data});
-    localStorage.setItem("inactiveProject", JSON.stringify(this.state));
+  deleteInacticeProject = (projectID) => {
+    console.log(projectID);
+    this.props.actions.deleteProject(projectID)
+  }
+  changeProjectInfo(projectID){
+    this.props.actions.editProject(projectID);
   }
 
   activateProject(projectID){
     console.log(projectID);
-    var temp = localStorage.getItem("activeProject");
-    var ap;
-    console.log(temp);
-    if(temp == null | temp === ""){
-      ap = {projects: []};
-    }
-    else{
-      ap = JSON.parse(temp);
-    }
-
-    console.log(ap);
-    var data = this.state.projects;
-    for(var i = 0; i < data.length; i++){
-      if(data[i].projectID == projectID){
-        console.log(ap);
-        if(ap == null) ap = {projects: []};
-        var temp = data[i];
-        console.log(temp);
-        temp.stylist = "Eddie";
-        temp.associate = "Jason";
-        temp.endDate = getTodayDate();
-        console.log(temp);
-        ap.projects.push(temp);
-      }
-    }
-    console.log("Storing proejct into activeProject");
-    console.log(ap);
-    localStorage.setItem("activeProject", JSON.stringify(ap));
-
-    this.deleteInacticeProject(projectID);
+    this.props.actions.activateProject(projectID);
   }
 
 
   constructor(props){
     super(props);
-
-    var ipData = localStorage.getItem("inactiveProject");
-
-    if(ipData == null | ipData === ""){
-      this.state = {projects: [],
-        showPopup: false,
-      editingProjectID: ""
-    };
-    }
-    else{
-      console.log(ipData);
-      this.state = JSON.parse(ipData);
-      this.state.showPopup = false;
+    this.state = {
+      showPopup: false,
     }
   }
 
 
   render() {
+    console.log(this.props.projects);
     return (
       <div id={"projects"}>
-      <GetInactiveProjects data = {this.state.projects} onDeleteInactiveProject = {this.deleteInacticeProject}
+      <GetInactiveProjects data = {this.props.projects} onDeleteInactiveProject = {this.deleteInacticeProject}
       onEditInactiveProject = {this.togglePopup.bind(this)} onActivateProject = {this.activateProject.bind(this)}/>
 
       {this.state.showPopup ?
@@ -138,7 +79,7 @@ const GetInactiveProjects = (props) => {
     console.log(props);
     const deleteProject = (event) =>{
       console.log("Going to remove project:" + props.projectID);
-      props.onDeleteInactiveProjectList(event.target.value);
+      props.onDeleteInactiveProjectList(props.projectID);
     }
 
     const editProject = (event) => {
@@ -147,7 +88,7 @@ const GetInactiveProjects = (props) => {
     }
 
     const activateProject = (event) => {
-      console.log(event);
+      console.log(event.target.value);
       props.onActivateInactiveProjectList(event.target.value);
     }
 
@@ -164,4 +105,16 @@ const GetInactiveProjects = (props) => {
     )
   }
 
-  export default InactiveProject;
+  function mapStateToProps(state, ownProps) {
+    console.log(state);
+    return {
+      projects: state.projects.filter(projects => projects.status == projectStatus.INACTIVE_PROJECT)
+    }
+  }
+
+  function mapDispatchToProps(dispatch) {
+    return {
+      actions: bindActionCreators(projectActions, dispatch)
+    };
+  }
+export default connect(mapStateToProps, mapDispatchToProps)(InactiveProject);

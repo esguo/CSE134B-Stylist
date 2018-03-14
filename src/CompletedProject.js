@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
 import './style/main.css';
 import Project from './Project';
+import * as projectStatus from './projectStatus'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as projectActions from './actions/projectActions'
 
 class CompletedProject extends Component {
 
   constructor(props){
     super(props);
-    var cpData = localStorage.getItem("completedProject");
-    console.log(cpData);
-    if(cpData == null | cpData === ""){
-      this.state = {projects: []};
-    }
-    else{
-      var s = JSON.parse(cpData);
-      this.state = s;
-    }
+
   }
 
   render() {
     return (
       <div id={"projects"}>
-      <GetCompletedProjects data = {this.state.projects} />
+      <GetCompletedProjects data = {this.props.projects} />
       </div>
     );
   }
@@ -56,5 +52,16 @@ const GetCompletedProjects = (props) => {
     )
   }
 
+  function mapStateToProps(state, ownProps) {
+    console.log(state);
+    return {
+      projects: state.projects.filter(projects => projects.status == projectStatus.COMPLETED_PROJECT)
+    }
+  }
 
-export default CompletedProject;
+  function mapDispatchToProps(dispatch) {
+    return {
+      actions: bindActionCreators(projectActions, dispatch)
+    };
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(CompletedProject);

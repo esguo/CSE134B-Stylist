@@ -32,10 +32,10 @@ class CreatProject extends Component {
     var projectName = this.state.projectName;
     var budget = this.state.budget;
 
-    var project = {projectName: projectName,
+    var project = {projectName: projectName, projectID: uuid(),
     budget: budget, date: getTodayDate(), stylist: 'Eddie',
     associate: 'Jason', status: projectStatus.INACTIVE_PROJECT};
-    // alert(JSON.stringify(this.props.projects))
+
     this.props.actions.saveProject(project);
     alert('Success!');
   }
@@ -77,7 +77,7 @@ class CreatProject extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    projects: state
+    projects: state.projects
   }
 }
 
