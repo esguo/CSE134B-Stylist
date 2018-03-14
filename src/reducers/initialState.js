@@ -1,3 +1,6 @@
+import * as userType from './userType'
 export default {
-  projects: [{projectName: 'haha'}]
+  projects: [],
+  messages: [],
+  userType: userType.CUSTOMER
 };

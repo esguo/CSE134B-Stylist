@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes'
 import initialState from './initialState';
 
-export default function messageReducer(state, action){
+export default function messageReducer(state = initialState, action){
   switch (action.type){
     case types.CREATE_PROJECT_SUCCESS:
       console.log("Creating a new project");
