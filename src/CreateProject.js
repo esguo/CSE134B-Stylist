@@ -76,7 +76,7 @@ class CreatProject extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    projects: state.projects
+    projects: state.projectReducer.projects
   }
 }
 

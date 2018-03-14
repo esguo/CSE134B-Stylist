@@ -108,7 +108,7 @@ const GetInactiveProjects = (props) => {
   function mapStateToProps(state, ownProps) {
     console.log(state);
     return {
-      projects: state.projects.filter(projects => projects.status == projectStatus.INACTIVE_PROJECT)
+      projects: state.projectReducer.projects.filter(projects => projects.status == projectStatus.INACTIVE_PROJECT)
     }
   }
 

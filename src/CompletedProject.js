@@ -55,7 +55,7 @@ const GetCompletedProjects = (props) => {
   function mapStateToProps(state, ownProps) {
     console.log(state);
     return {
-      projects: state.projects.filter(projects => projects.status == projectStatus.COMPLETED_PROJECT)
+      projects: state.projectReducer.projects.filter(projects => projects.status == projectStatus.COMPLETED_PROJECT)
     }
   }
 
