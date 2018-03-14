@@ -43,7 +43,7 @@ const GetCompletedProjects = (props) => {
     return (
       <div className="active_project">
       <p className="project_name"> {props.projectName} </p>
-      <p className="start_date">End Date: {props.endDate}</p>
+      <p className="start_date">End Date: {props.date}</p>
       <p className="budget">Budget: {props.budget}</p>
       <p className="image"><img src={require('./photos/hair.png')} className="item" alt="item image"></img>
       <img src={require('./photos/shirt.png')} className="item" alt="item image"></img></p>

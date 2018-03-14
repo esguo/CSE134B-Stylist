@@ -22,8 +22,8 @@ class InactiveProject extends Component {
     console.log(projectID);
     this.props.actions.deleteProject(projectID)
   }
-  changeProjectInfo(projectID){
-    this.props.actions.editProject(projectID);
+  changeProjectInfo(state){
+    this.props.actions.editProject(this.state.editingProjectID, state.projectName, state.budget);
   }
 
   activateProject(projectID){

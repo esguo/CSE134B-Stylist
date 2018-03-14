@@ -44,7 +44,7 @@ class CreatProject extends Component {
   render() {
     return (
       <div>
-        <button onClick ={this.handleSubmit}> test </button>
+        <button onClick ={this.handleSubmit}> Create </button>
       <div className="column" style={{marginTop: 5, height: '100%', width: '100%', flex: '40%'}}>
       <h2 style={{margin: 50}}>Project Name</h2>
       <form onSubmit={this.handleSubmit}>
@@ -57,7 +57,6 @@ class CreatProject extends Component {
       <input type="text" id="budget" placeholder="Budget..." value={this.state.value} onChange={this.handleBudgetChange}  />
       </label>
       <div className="column" style={{height: 100, width: 200, float: 'right', position: 'absolute', bottom: 0, right: 0}}>
-      <input type="submit" style={{height: '100%', width: '100%'}} value = "Create"></input>
       </div>
       </form>
       </div>

@@ -1,6 +1,7 @@
 import * as types from '../actions/actionTypes'
 import initialState from './initialState';
 import * as projectStatus from '../projectStatus'
+import {uuid, getTodayDate} from '../utils.js';
 
 export default function projecctReducer(state = initialState, action){
   switch (action.type){
@@ -10,9 +11,19 @@ export default function projecctReducer(state = initialState, action){
       console.log(state);
       var newState = Object.assign({}, state, {projects: [...state.projects, action.project]});
       console.log(newState);
-      alert(JSON.stringify(newState))
       return newState
+
     case types.EDIT_PROJECT_SUCCESS:
+    var newState = Object.assign({}, state, {projects: state.projects.map(
+      project => {
+        if(project.projectID == action.projectID){
+          return Object.assign({}, project, {projectName: action.projectName, budget: action.budget} )
+        }
+        return project
+      }
+    )})
+      console.log(newState)
+      return newState;
       return state;
 
     case types.DELETE_PROJECT_SUCCESS:
@@ -38,7 +49,7 @@ export default function projecctReducer(state = initialState, action){
     var newState = Object.assign({}, state, {projects: state.projects.map(
       project => {
         if(project.projectID == action.projectID){
-          return Object.assign({}, project, {status: projectStatus.COMPLETED_PROJECT} )
+          return Object.assign({}, project, {status: projectStatus.COMPLETED_PROJECT, date: getTodayDate()} )
         }
         return project
       }

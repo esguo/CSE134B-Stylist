@@ -28,17 +28,19 @@ export default class EditProject extends Component {
 
     render() {
       return (
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Project Name:
-            <input type="text" value={this.state.value} onChange={this.handleProjectNameChange} />
+        <div>
+          <button onClick = {this.handleSubmit}> Submit </button>
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Project Name:
+              <input type="text" value={this.state.value} onChange={this.handleProjectNameChange} />
 
-            Budget:
-            <input type="text" value={this.state.value} onChange={this.handleBudgetChange} />
+              Budget:
+              <input type="text" value={this.state.value} onChange={this.handleBudgetChange} />
 
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+            </label>
+          </form>
+        </div>
       );
     }
 }
