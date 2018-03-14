@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import './style/message.css';
-
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as projectActions from './actions/projectActions'
 
 class Messages extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {messages: props.msg};
+    this.sendMessage = this.sendMessage.bind(this);
+  }
 
   sendMessage(){
     var input = document.getElementById("inputBox").value;
 
+    this.props.actions.sendMessage(input);
     var messages = [];
     messages = JSON.parse(localStorage.getItem("msg"));
     if(!messages)
@@ -33,7 +42,7 @@ class Messages extends Component {
       if(messages[i].id === "1")
       var chatBox = "<div class=\"chatBox\"><p class=\"chatContent\">"+input+"</p></div>";
       else
-      var chatBox = "<div class=\"chatBox1\"><p class=\"chatContent\">"+input+"</p></div>";
+        chatBox = "<div class=\"chatBox1\"><p class=\"chatContent\">"+input+"</p></div>";
       document.getElementById("content").innerHTML += chatBox;
     }
   }
@@ -65,4 +74,17 @@ class Messages extends Component {
   }
 }
 
-export default Messages;
+function mapStateToProps(state, ownProps) {
+  console.log(state);
+  return {
+    messages: state.messages
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(projectActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);

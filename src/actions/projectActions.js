@@ -20,6 +20,10 @@ export function finishProjectSuccess(projectID){
   return { type: types.FINISH_PROJECT_SUCCESS, projectID}
 }
 
+export function sendMessageSuccess(message){
+  return { type: types.SEND_MSG_SUCCESS, message}
+}
+
 export function saveProject(project){
   console.log("OK");
   return function(dispatch, getState){
@@ -42,14 +46,21 @@ export function editProject(projectID, projectName, budget){
 
 export function deleteProject(projectID){
   return function(dispatch, getState){
-    console.log('deleting project', projectID);
+    console.log('Deleting project', projectID);
     dispatch(deleteProjectSuccess(projectID))
   }
 }
 
 export function finishProject(projectID){
   return function(dispatch, getState){
-    console.log('finishing project', projectID);
+    console.log('Finishing project', projectID);
     dispatch(finishProjectSuccess(projectID))
+  }
+}
+
+export function sendMessage(message){
+  console.log("Sending Message");
+  return function(dispatch, getState){
+      dispatch(sendMessageSuccess(message))
   }
 }

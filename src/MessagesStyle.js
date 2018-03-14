@@ -14,7 +14,6 @@ class MessagesStyle extends Component {
 
     if(input === "")  return;
     messages.push({id:"0", msg:input});
-    console.log(messages);
     localStorage.setItem('msg', JSON.stringify(messages));
     var chatBox = "<div class=\"chatBox\"><p class=\"chatContent\">"+input+"</p></div>";
     document.getElementById("inputBox").value =  "";

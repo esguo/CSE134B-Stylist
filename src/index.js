@@ -9,9 +9,9 @@ import EditProject from './EditProject';
 import { createStore } from 'redux'
 import {Provider} from 'react-redux';
 import configureStore from './store/configureStore';
-import initialState from './reducers/initialState'
+import rootReducer from './reducers/rootReducer';
 
-const store = configureStore(initialState);
+const store = configureStore(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>

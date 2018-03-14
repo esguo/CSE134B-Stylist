@@ -1,9 +1,9 @@
 import * as types from '../actions/actionTypes'
-import initialState from './initialState';
+import initialStateProject from './initialStateProject';
 import * as projectStatus from '../projectStatus'
 import {uuid, getTodayDate} from '../utils.js';
 
-export default function projecctReducer(state = initialState, action){
+export default function projectReducer(state = initialStateProject, action){
   switch (action.type){
     case types.CREATE_PROJECT_SUCCESS:
       console.log("Creating a new project");

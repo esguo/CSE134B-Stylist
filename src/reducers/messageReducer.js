@@ -1,18 +1,12 @@
 import * as types from '../actions/actionTypes'
-import initialState from './initialState';
+import initialStateMsg from './initialStateMsg';
 
-export default function messageReducer(state = initialState, action){
+export default function messageReducer(state = initialStateMsg, action){
   switch (action.type){
-    case types.CREATE_PROJECT_SUCCESS:
-      console.log("Creating a new project");
-      console.log(action.project);
-      var newState = [Object.assign({}, action.project)];
-      alert(JSON.stringify(newState))
-      return {projectName:'hello'}
-    case types.EDIT_PROJECT_SUCCESS:
-      return state;
-    case types.DELETE_PROJECT_SUCCESS:
-      return state;
+    case types.SEND_MSG_SUCCESS:
+      console.log("Sent!");
+      var newState = Object.assign({}, state, {messages: [...state.messages, action.message]});
+      return newState;
 
     default:
       return state;
