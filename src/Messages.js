@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as projectActions from './actions/projectActions'
 
+var key = 0;
+
 class Messages extends Component {
 
   constructor(props){
@@ -15,37 +17,7 @@ class Messages extends Component {
   sendMessage(){
     var input = document.getElementById("inputBox").value;
 
-    this.props.actions.sendMessage("1", input);
-    var messages = [];
-    messages = JSON.parse(localStorage.getItem("msg"));
-    if(!messages)
-     messages = [];
-
-    if(input === "")  return;
-    messages.push({id:"1", msg:input});
-    console.log(messages);
-    //localStorage.setItem('msg', JSON.stringify(messages));
-    var chatBox = "<div class=\"chatBox\"><p class=\"chatContent\">"+input+"</p></div>";
-    document.getElementById("inputBox").value =  "";
-    document.getElementById("content").innerHTML += chatBox;
-  }
-
-  componentDidMount(){
-    var messages = [];
-    //localStorage.clear();
-    //messages = JSON.parse(localStorage.getItem("msg"));
-    //messages = this.props.actions.
-    console.log(messages);
-    if (!messages)
-    return;
-    for(var i=0; i<messages.length; i++){
-      var input = messages[i].msg;
-      if(messages[i].id === "1")
-      var chatBox = "<div class=\"chatBox\"><p class=\"chatContent\">"+input+"</p></div>";
-      else
-        chatBox = "<div class=\"chatBox1\"><p class=\"chatContent\">"+input+"</p></div>";
-      document.getElementById("content").innerHTML += chatBox;
-    }
+    this.props.actions.sendMessage(1, input);
   }
 
   render() {
@@ -55,9 +27,11 @@ class Messages extends Component {
           <h3>Jane Doe</h3>
           <h4>How about this st...</h4>
         </div>
-        <div style={{width: '75%', borderStyle: 'solid'}}>
+        <div style={{width: '75%', height:'100%', borderStyle: 'solid', display:'block', overflow:'hidden'}}>
           <div className="row" style={{height: 'calc(100% - 80px)', width: '100%'}}>
-            <div className="content" id="content" />
+            <div className="content" id="content" >
+              <GetMessages data = {this.props.messages} />
+            </div>
             <div className="row" style={{height: '80px', width: '100%'}}>
               <div className="input_and_send">
                 <div className="column" style={{borderTop: 'solid', height: '100%', width: '85%'}}>
@@ -74,6 +48,37 @@ class Messages extends Component {
     );
   }
 }
+
+const GetMessages = (props) => {
+  console.log(props.data);
+  if(props.data.length === 0){
+    return null;
+  }
+  return(
+    <div>
+      {props.data.map((message, i) => <MessageBox {...message} />)}
+    </div>
+  )
+}
+
+const MessageBox = (props) => {
+  var i = 1;
+  console.log("i: ");
+  console.log(i);
+  console.log(props);
+  if(props.page === 0)
+    return(
+      <div className="chatBox1">
+        <p className="chatContent">{props.msg}</p>
+      </div>
+    )
+  else return(
+    <div className="chatBox">
+      <p className="chatContent">{props.msg}</p>
+    </div>
+  )
+}
+
 
 function mapStateToProps(state, ownProps) {
   console.log(state);

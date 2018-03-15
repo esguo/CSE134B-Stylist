@@ -25,10 +25,10 @@ class App extends Component {
 
 const PostSign = () => (
   <div className="container" style={{height: '100%'}}>
-    <div style={{width: '25%', borderStyle:'solid', textAlign:'center'}}>
+    <div style={{width: '25%', height:'80vh', borderStyle:'solid', textAlign:'center'}}>
       <Nav />
     </div>
-    <div style={{width: '75%', padding: '20px'}}>
+    <div style={{width: '75%', height:'80vh', padding: '20px'}}>
       <div style={{height: '10%'}}>
         <Route path="/signedin/active" component={headingActive} />
         <Route path="/signedin/inactive" component={headingInactive} />
@@ -38,7 +38,7 @@ const PostSign = () => (
         <Route path="/signedin/create" component={headingCreateProject} />
         <hr />
       </div>
-      <div style={{height:'90%'}}>
+      <div style={{height:'90%', display:'block', overflow:'auto'}}>
         <Route path="/signedin/active" component={ActiveProject} />
         <Route path="/signedin/inactive" component={InactiveProject} />
         <Route path="/signedin/completed" component={CompletedProject} />

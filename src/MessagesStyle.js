@@ -1,52 +1,36 @@
 import React, { Component } from 'react';
 import './style/message.css';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as projectActions from './actions/projectActions'
 
+var key = 0;
 
-class MessagesStyle extends Component {
+class Messages extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {messages: props.msg};
+    this.sendMessage = this.sendMessage.bind(this);
+  }
 
   sendMessage(){
     var input = document.getElementById("inputBox").value;
-
-    var messages = [];
-    messages = JSON.parse(localStorage.getItem("msg"));
-    if(!messages)
-    messages = [];
-
-    if(input === "")  return;
-    messages.push({id:"0", msg:input});
-    localStorage.setItem('msg', JSON.stringify(messages));
-    var chatBox = "<div class=\"chatBox\"><p class=\"chatContent\">"+input+"</p></div>";
-    document.getElementById("inputBox").value =  "";
-    document.getElementById("content").innerHTML += chatBox;
-  }
-
-  componentDidMount(){
-    var messages = [];
-    //localStorage.clear();
-    messages = JSON.parse(localStorage.getItem("msg"));
-    console.log(messages);
-    if (!messages)
-    return;
-    for(var i=0; i<messages.length; i++){
-      var input = messages[i].msg;
-      if(messages[i].id === "0")
-      var chatBox = "<div class=\"chatBox\"><p class=\"chatContent\">"+input+"</p></div>";
-      else
-      chatBox = "<div class=\"chatBox1\"><p class=\"chatContent\">"+input+"</p></div>";
-      document.getElementById("content").innerHTML += chatBox;
-    }
+    this.props.actions.sendMessage(0, input);
   }
 
   render() {
     return (
       <div className="container" style={{padding: '0px', height: '100%'}}>
         <div style={{width: '25%', borderStyle: 'solid'}}>
-          <h3>John Doe</h3>
+          <h3>Jane Doe</h3>
           <h4>How about this st...</h4>
         </div>
-        <div style={{width: '75%', borderStyle: 'solid'}}>
+        <div style={{width: '75%', height:'100%', borderStyle: 'solid', display:'block', overflow:'hidden'}}>
           <div className="row" style={{height: 'calc(100% - 80px)', width: '100%'}}>
-            <div className="content" id="content" />
+            <div className="content" id="content" >
+              <GetMessages data = {this.props.messages} />
+            </div>
             <div className="row" style={{height: '80px', width: '100%'}}>
               <div className="input_and_send">
                 <div className="column" style={{borderTop: 'solid', height: '100%', width: '85%'}}>
@@ -64,4 +48,48 @@ class MessagesStyle extends Component {
   }
 }
 
-export default MessagesStyle;
+const GetMessages = (props) => {
+  console.log(props.data);
+  if(props.data.length === 0){
+    return null;
+  }
+  return(
+    <div>
+      {props.data.map((message, i) => <MessageBox {...message} />)}
+    </div>
+  )
+}
+
+const MessageBox = (props) => {
+  var i = 1;
+  console.log("i: ");
+  console.log(i);
+  console.log(props);
+  if(props.page === 0)
+    return(
+      <div className="chatBox">
+        <p className="chatContent">{props.msg}</p>
+      </div>
+    )
+  else return(
+    <div className="chatBox1">
+      <p className="chatContent">{props.msg}</p>
+    </div>
+  )
+}
+
+
+function mapStateToProps(state, ownProps) {
+  console.log(state);
+  return {
+    messages: state.messageReducer.messages
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(projectActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);
