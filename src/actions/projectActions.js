@@ -20,8 +20,8 @@ export function finishProjectSuccess(projectID){
   return { type: types.FINISH_PROJECT_SUCCESS, projectID}
 }
 
-export function sendMessageSuccess(message){
-  return { type: types.SEND_MSG_SUCCESS, message}
+export function sendMessageSuccess(page, message){
+  return { type: types.SEND_MSG_SUCCESS, page, message}
 }
 
 export function saveProject(project){
@@ -58,9 +58,9 @@ export function finishProject(projectID){
   }
 }
 
-export function sendMessage(message){
+export function sendMessage(page, message){
   console.log("Sending Message");
   return function(dispatch, getState){
-      dispatch(sendMessageSuccess(message))
+      dispatch(sendMessageSuccess(page, message))
   }
 }

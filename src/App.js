@@ -13,14 +13,12 @@ import Signin from './SignIn';
 class App extends Component {
   render() {
     return (
-      <body style={{height: '100%'}}>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Signin} />
-            <Route path="/signedin" component={PostSign} />
-          </Switch>
-        </Router>
-      </body>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Signin} />
+          <Route path="/signedin" component={PostSign} />
+        </Switch>
+      </Router>
     );
   }
 }

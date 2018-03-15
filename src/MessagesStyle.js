@@ -10,7 +10,7 @@ class MessagesStyle extends Component {
     var messages = [];
     messages = JSON.parse(localStorage.getItem("msg"));
     if(!messages)
-    var messages = [];
+    messages = [];
 
     if(input === "")  return;
     messages.push({id:"0", msg:input});
@@ -32,7 +32,7 @@ class MessagesStyle extends Component {
       if(messages[i].id === "0")
       var chatBox = "<div class=\"chatBox\"><p class=\"chatContent\">"+input+"</p></div>";
       else
-      var chatBox = "<div class=\"chatBox1\"><p class=\"chatContent\">"+input+"</p></div>";
+      chatBox = "<div class=\"chatBox1\"><p class=\"chatContent\">"+input+"</p></div>";
       document.getElementById("content").innerHTML += chatBox;
     }
   }

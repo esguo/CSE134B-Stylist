@@ -1,7 +1,9 @@
 * {
   box-sizing: border-box;
 }
-
+div{
+  all: none;
+}
 html, body {
   margin: 0;
   display: block;

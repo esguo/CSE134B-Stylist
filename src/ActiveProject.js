@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './style/main.css';
-import Project from './Project';
-import {getTodayDate } from './utils.js';
 import * as projectStatus from './projectStatus'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -13,10 +11,6 @@ class ActiveProject extends Component {
     this.props.actions.finishProject(projectID)
   }
 
-  constructor(props){
-    super(props);
-
-  }
   render() {
     return (
       <div id={"projects"}>
@@ -49,7 +43,7 @@ const ActiveProjectBox = (props) => {
     <p className="project_name"> {props.projectName} </p>
     <p className="start_date">Start Date: {props.date}</p>
     <p className="budget">Budget: {props.budget}</p>
-    <p className="image"><img src={require('./photos/progress.png')} alt="Progress Image" className="progress"></img></p>
+    <p className="image"><img src={require('./photos/progress.png')} alt="Progress" className="progress"></img></p>
     <p className="stylist_associate">Stylist: {props.stylist} <br></br>Associate: {props.associate} </p>
     <button onClick={finishProject} value={props.projectID}>finish</button>
     </div>
@@ -63,7 +57,7 @@ const ActiveProjectBox = (props) => {
 function mapStateToProps(state, ownProps) {
   console.log(state);
   return {
-    projects: state.projectReducer.projects.filter(projects => projects.status == projectStatus.ACTIVE_PROJECT)
+    projects: state.projectReducer.projects.filter(projects => projects.status === projectStatus.ACTIVE_PROJECT)
   }
 }
 

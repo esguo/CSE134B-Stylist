@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import './style/main.css';
-import Project from './Project';
 import * as projectStatus from './projectStatus'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as projectActions from './actions/projectActions'
 
 class CompletedProject extends Component {
-
-  constructor(props){
-    super(props);
-
-  }
 
   render() {
     return (
@@ -36,17 +30,17 @@ const GetCompletedProjects = (props) => {
   const CompletedProjectBox = (props) => {
     console.log(props);
 
-    const finishProject = (event) => {
-      props.onFinishProjectInList(event.target.value)
-    }
+    // const finishProject = (event) => {
+    //   props.onFinishProjectInList(event.target.value)
+    // }
 
     return (
       <div className="active_project">
       <p className="project_name"> {props.projectName} </p>
       <p className="start_date">End Date: {props.date}</p>
       <p className="budget">Budget: {props.budget}</p>
-      <p className="image"><img src={require('./photos/hair.png')} className="item" alt="item image"></img>
-      <img src={require('./photos/shirt.png')} className="item" alt="item image"></img></p>
+      <p className="image"><img src={require('./photos/hair.png')} className="item" alt="item"></img>
+      <img src={require('./photos/shirt.png')} className="item" alt="item"></img></p>
       <p className="stylist_associate">Stylist: {props.stylist} <br></br>Associate: {props.associate} </p>
       </div>
     )
@@ -55,7 +49,7 @@ const GetCompletedProjects = (props) => {
   function mapStateToProps(state, ownProps) {
     console.log(state);
     return {
-      projects: state.projectReducer.projects.filter(projects => projects.status == projectStatus.COMPLETED_PROJECT)
+      projects: state.projectReducer.projects.filter(projects => projects.status === projectStatus.COMPLETED_PROJECT)
     }
   }
 

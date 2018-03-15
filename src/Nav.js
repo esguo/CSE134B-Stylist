@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './style/styles.css';
 import { Link } from "react-router-dom";
-import { steve } from './photos/steve.jpg'
 
 class Nav extends Component {
   render() {

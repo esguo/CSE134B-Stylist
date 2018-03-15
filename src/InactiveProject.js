@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import EditProject from './EditProject';
 import './style/main.css';
-import {getTodayDate } from './utils.js';
 import * as projectStatus from './projectStatus'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -108,7 +107,7 @@ const GetInactiveProjects = (props) => {
   function mapStateToProps(state, ownProps) {
     console.log(state);
     return {
-      projects: state.projectReducer.projects.filter(projects => projects.status == projectStatus.INACTIVE_PROJECT)
+      projects: state.projectReducer.projects.filter(projects => projects.status === projectStatus.INACTIVE_PROJECT)
     }
   }
 

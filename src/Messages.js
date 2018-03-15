@@ -15,16 +15,16 @@ class Messages extends Component {
   sendMessage(){
     var input = document.getElementById("inputBox").value;
 
-    this.props.actions.sendMessage(input);
+    this.props.actions.sendMessage("1", input);
     var messages = [];
     messages = JSON.parse(localStorage.getItem("msg"));
     if(!messages)
-    var messages = [];
+     messages = [];
 
     if(input === "")  return;
     messages.push({id:"1", msg:input});
     console.log(messages);
-    localStorage.setItem('msg', JSON.stringify(messages));
+    //localStorage.setItem('msg', JSON.stringify(messages));
     var chatBox = "<div class=\"chatBox\"><p class=\"chatContent\">"+input+"</p></div>";
     document.getElementById("inputBox").value =  "";
     document.getElementById("content").innerHTML += chatBox;
@@ -33,7 +33,8 @@ class Messages extends Component {
   componentDidMount(){
     var messages = [];
     //localStorage.clear();
-    messages = JSON.parse(localStorage.getItem("msg"));
+    //messages = JSON.parse(localStorage.getItem("msg"));
+    //messages = this.props.actions.
     console.log(messages);
     if (!messages)
     return;
@@ -77,7 +78,7 @@ class Messages extends Component {
 function mapStateToProps(state, ownProps) {
   console.log(state);
   return {
-    messages: state.messages
+    messages: state.messageReducer.messages
   }
 }
 
