@@ -6,10 +6,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as projectActions from './actions/projectActions'
 
-class InactiveProject extends Component {
-
-
-
+export class InactiveProject extends Component {
   togglePopup(projectID) {
     console.log("Editing " + projectID);
     this.setState({
@@ -63,7 +60,7 @@ class InactiveProject extends Component {
   }
 }
 
-const GetInactiveProjects = (props) => {
+export const GetInactiveProjects = (props) => {
   console.log(props.data);
   return(
     <div>
@@ -99,7 +96,7 @@ const GetInactiveProjects = (props) => {
       <p className="find_stylist">Find Your Personal Stylist</p>
       <button onClick={deleteProject} value={props.projectID}>Delete</button>
       <button onClick={editProject} value={props.projectID}>Edit</button>
-      <button onClick={activateProject} value={props.projectID}>Make It Active</button>
+      <button onClick={activateProject} value={props.projectID} id='makeItActive'>Make It Active</button>
       </div>
     )
   }

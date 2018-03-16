@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as projectActions from './actions/projectActions'
 
-var key = 0;
 
 class Messages extends Component {
 

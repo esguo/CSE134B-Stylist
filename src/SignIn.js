@@ -31,7 +31,7 @@ class Signin extends Component {
                   <input name="pswrd" placeholder="Password" type="text" />
                 </div>
                 <p><Link to='/signedin'>Sign In</Link></p>
-                <p className="signup" id="form2" onclick="signForm(this)"> Sign up </p>
+                <p className="signup" id="form2" onClick="signForm(this)"> Sign up </p>
               </form>
             </div>
           </div>
