@@ -1,4 +1,5 @@
 import * as types from './actionTypes'
+import projectApi from '../api/mockProjectApi'
 
 export function createProjectSuccess(project) {
   return {type: types.CREATE_PROJECT_SUCCESS, project}
@@ -27,16 +28,24 @@ export function sendMessageSuccess(page, message){
 export function saveProject(project){
   console.log("OK");
   return function(dispatch, getState){
+    return projectApi.saveProject(project).then(project => {
       dispatch(createProjectSuccess(project))
+    }).catch(error => {
+      throw(error)
+    })
   }
 }
 
 export function activateProject(projectID){
   return function(dispatch, getState){
-    console.log('Activating project: ', projectID);
-    dispatch(activateProjectSuccess(projectID))
+    return projectApi.saveProject(projectID).then(project => {
+      dispatch(activateProjectSuccess(projectID))
+    }).catch(error => {
+      throw(error)
+    })
   }
 }
+
 export function editProject(projectID, projectName, budget){
   return function(dispatch, getState){
     console.log('Editing project', projectID, projectName, budget);
@@ -46,21 +55,28 @@ export function editProject(projectID, projectName, budget){
 
 export function deleteProject(projectID){
   return function(dispatch, getState){
-    console.log('Deleting project', projectID);
-    dispatch(deleteProjectSuccess(projectID))
+    return projectApi.saveProject(projectID).then(project => {
+      dispatch(deleteProjectSuccess(projectID))
+    }).catch(error => {
+      throw(error)
+    })
   }
+
 }
 
 export function finishProject(projectID){
   return function(dispatch, getState){
-    console.log('Finishing project', projectID);
-    dispatch(finishProjectSuccess(projectID))
+    return projectApi.saveProject(projectID).then(project => {
+      dispatch(finishProjectSuccess(projectID))
+    }).catch(error => {
+      throw(error)
+    })
   }
 }
 
 export function sendMessage(page, message){
   console.log("Sending Message");
   return function(dispatch, getState){
-      dispatch(sendMessageSuccess(page, message))
+    dispatch(sendMessageSuccess(page, message))
   }
 }

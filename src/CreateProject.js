@@ -37,7 +37,7 @@ class CreatProject extends Component {
     associate: 'Jason', status: projectStatus.INACTIVE_PROJECT};
 
     this.props.actions.saveProject(project);
-    alert('Success!');
+    alert('Submited!');
   }
 
 
