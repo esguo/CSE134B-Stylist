@@ -67,7 +67,7 @@ class CreatProject extends Component {
       </form>
       </div>
       <div className="column" style={{flex: '60%'}}>
-      <div style={{marginTop: 5, height: '100%', borderStyle: 'solid'}}>
+      <div style={{marginTop: 5, height: '100%', minWidth: '400px', borderStyle: 'solid'}}>
       <h2 style={{margin: 10, height: '5%'}}>Description:</h2>
       <textarea name="Text1" id="desc" style={{margin: 10, width: '95%', height: '80%'}} defaultValue={""} onChange = {this.handleDescriptionChange}/>
       </div>
