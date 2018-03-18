@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import styles from './style/home.modules.css';
+import styles from './style/SignIn.module.css';
 import {Link} from "react-router-dom";
+
+console.log("hi");
+console.log(styles);
 
 class Signin extends Component {
   render() {
@@ -15,7 +18,7 @@ class Signin extends Component {
           </ul>
         </div>
         <div className={styles.home}>
-          <div className={"carousel"}>
+          <div className={styles.carousel}>
             <div className={styles.img}>
               <img src="photos/300x300.png" alt="Placeholder" />
             </div>

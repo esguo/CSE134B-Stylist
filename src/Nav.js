@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './style/styles.css';
+import styles from './style/styles.css';
 import { Link } from "react-router-dom";
 
 class Nav extends Component {
@@ -12,7 +12,7 @@ class Nav extends Component {
         <div style={{textAlign: 'center'}}>
           <h3 className="heading"> John Doe </h3>
           <p style={{textAlign: 'center'}}> Edit Profile</p>
-          <div className="projects" style={{textAlign: 'center'}}>
+          <div className={styles.project}>
             <h1 className="heading">Projects</h1>
             <ul style={{display:'inline-block', textAlign: 'left'}}>
             <li><Link to="/signedin/create">Create Project</Link></li>
