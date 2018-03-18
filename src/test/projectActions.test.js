@@ -46,5 +46,4 @@ describe('Project Actions', () => {
       expect(action).toEqual(expectedAction);
     });
   });
-
 });

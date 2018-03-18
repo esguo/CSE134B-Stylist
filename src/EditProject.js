@@ -33,7 +33,7 @@ export default class EditProject extends Component {
     }
 
     render() {
-      if(this.props.type == '1'){
+      if(this.props.type === '1'){
         return (
           <div>
             <button onClick = {this.handleSubmit}> Submit </button>

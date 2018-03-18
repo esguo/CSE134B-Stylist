@@ -1,5 +1,7 @@
 import * as types from './actionTypes'
 import projectApi from '../api/mockProjectApi'
+import {beginAjaxCall} from './ajaxStatusActions';
+
 
 export function createProjectSuccess(project) {
   return {type: types.CREATE_PROJECT_SUCCESS, project}
@@ -27,13 +29,14 @@ export function sendMessageSuccess(page, message){
 
 export function saveProject(project){
   console.log("OK");
-  return function(dispatch, getState){
+  return dispatch => {
+    dispatch(beginAjaxCall());
     return projectApi.saveProject(project).then(project => {
       dispatch(createProjectSuccess(project))
     }).catch(error => {
       throw(error)
     })
-  }
+  };
 }
 
 export function activateProject(projectID){

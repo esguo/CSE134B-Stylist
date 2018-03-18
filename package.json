@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "css-loader": "^0.28.11",
     "expect": "^23.0.0-alpha.0",
     "nock": "^9.2.3",
     "react": "^16.2.0",
+    "react-css-modules": "^4.7.1",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
