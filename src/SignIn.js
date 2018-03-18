@@ -9,7 +9,7 @@ class Signin extends Component {
   render() {
     return (
       <div>
-        <div className="header">
+        <div className={styles.header}>
           <ul>
             <li><a>Home</a></li>
             <li><a>About</a></li>
@@ -23,18 +23,18 @@ class Signin extends Component {
               <img src="photos/300x300.png" alt="Placeholder" />
             </div>
           </div>
-          <div className="login">
+          <div className={styles.login}>
             <div className={styles.img}>
               <img src="photos/300x300.png" alt="Placeholder" />
             </div>
             <div className={styles.auth} id="forms">
               <form id="forms2">
-                <div className="input" id="inputs">
+                <div className={styles.input} id="inputs">
                   <input name="userID" placeholder="Username" type="text" />
                   <input name="pswrd" placeholder="Password" type="text" />
                 </div>
                 <p><Link to='/signedin'>Sign In</Link></p>
-                <p className="signup" id="form2">Sign up</p>
+                <p className={styles.signup} id="form2">Sign up</p>
               </form>
             </div>
           </div>

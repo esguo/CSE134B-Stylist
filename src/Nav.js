@@ -23,6 +23,7 @@ class Nav extends Component {
           </div>
           <h2 className="heading"><Link to="/signedin/messages">Messages</Link></h2>
           <h2 className="heading"><Link to="/signedin/messagesStyle">Messages (Stylist)</Link></h2>
+          <h2 className="heading"><Link to="/">Sign Out</Link></h2>
         </div>
       </div>
     );

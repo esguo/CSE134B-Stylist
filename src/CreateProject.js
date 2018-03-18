@@ -52,7 +52,7 @@ class CreatProject extends Component {
       <div>
         <button onClick ={this.handleSubmit}> Create </button>
       <div className="column" style={{marginTop: 5, height: '100%', width: '100%', flex: '40%'}}>
-      <h2 style={{margin: 50}}>Project Name</h2>
+      <h2>Project Name</h2>
       <form onSubmit={this.handleSubmit}>
 
       <label>

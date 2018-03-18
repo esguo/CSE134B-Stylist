@@ -54,13 +54,14 @@ export default class EditProject extends Component {
             <label>
               Project Name:
               <input type="text" value={this.state.value} onChange={this.handleProjectNameChange} />
+              <br/>
 
               Budget:
               <input type="text" value={this.state.value} onChange={this.handleBudgetChange} />
-
+              <br/>
               Description:
               <input type="text" value={this.state.value} onChange={this.handleDescriptionChange} />
-
+              <br/>
             </label>
           </form>
         </div>

@@ -238,7 +238,7 @@ input[type="submit"] {
 }
 
 input[type=text] {
-  width: 90%;
+  width: 50%;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
@@ -252,7 +252,7 @@ input[type=text] {
 }
 
 input[type=input] {
-  width: 90%;
+  width: 50%;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
@@ -281,15 +281,6 @@ button.send {
   padding: 0px;
 }
 
-
-.chat{
-  margin-left: 2%;
-  margin-right: 2%;
-  border: 2px solid black;
-  height:90%;
-  width: 96%;
-}
-
 .content{
   width:100%;
   height:100%;
@@ -300,42 +291,6 @@ button.send {
 .input_and_send{
   width: 100%;
   height: 100%;
-}
-.chatBox::after{
-  clear: both;
-}
-
-.chatContent{
-  text-align: center;
-  display: block;
-}
-
-.project_name{
-  font-size: 50px;
-  float: left;
-}
-.start_date{
-  float: right;
-}
-.images{
-  float: left;
-}
-.stylist_associate{
-  float: right;
-}
-.budget{
-  float: left;
-}
-
-.active_project{
-  border: 2px solid #ccc;
-  margin-bottom: 20px;
-}
-
-.home_text{
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 @media (min-width:1px) and (max-width:798px) {

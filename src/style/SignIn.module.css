@@ -15,7 +15,7 @@ img{
   width: 100%;
 }
 
-.header {
+:local(.header) {
   position: relative;
   z-index: 1;
   height: 6%;
@@ -28,7 +28,7 @@ img{
   top: 0;
   float: left;
 }
-.header ul{
+:local(.header ul){
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -38,26 +38,22 @@ img{
   position: relative;
 }
 
-.header ul::after{
+:local(.header ul::after){
   clear: both;
 }
 
-.header ul li{
+:local(.header ul li){
   float: left;
   margin-right: 0.5em;
   padding: 14px 16px;
   text-decoration: none;
   display: block;
 }
-.header ul li a{
+:local(.header ul li a){
   color: black;
 }
-.header ul li a:hover{
+:local(.header ul li a:hover){
   color: #333;
-}
-
-.header::after{
-  clear: both;
 }
 
 .footer{
@@ -79,7 +75,7 @@ img{
   font-size: 1.5vw;
 }
 
-.home{
+:local(.home){
 
   height: 88%;
   width: 100%;
@@ -105,7 +101,7 @@ img{
   image-rendering: -webkit-optimize-contrast;
 }
 
-.login {
+:local(.login) {
     height: 60vh;
     padding-top: 80px;
     width: 35%;
@@ -115,12 +111,12 @@ img{
     text-align: center;
 }
 
-.login .img{
+:local(.login .img){
   height: 30%;
   width: 100%;
 }
 
-.login .img img{
+:local(.login .img img){
 
   max-width: 80%;
   max-height:80%;
@@ -139,59 +135,4 @@ img{
   text-align: center;
   overflow:hidden;
   border-radius: 3
-}
-.auth p{
-  font-size: 2vw;
-  height: 100%;
-  width: 100%;
-}
-.input{
-  padding-bottom:1vw;
-  height: 100%;
-  width: 100%;
-}
-.form-space{
-  padding-bottom:0vw;
-}
-
-
-input[type="text"] {
-  border: 0;
-  border-bottom: 1px solid black;
-  outline: 0;
-  font-size: 1.5vw;
-  display:inline;
-  max-width: 280px;
-
-}
-input[type="submit"] {
-    font-size: 1.5vw;
-}
-
-.project_name{
-  font-size: 50px;
-  float: left;
-}
-.start_date{
-  float: right;
-}
-.images{
-  float: left;
-}
-.stylist_associate{
-  float: right;
-}
-.budget{
-  float: left;
-}
-
-.active_project{
-  border: 2px solid #ccc;
-  margin-bottom: 20px;
-}
-
-.home_text{
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
 }
