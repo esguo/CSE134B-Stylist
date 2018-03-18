@@ -71,19 +71,6 @@ div::after{
   padding-top: 1%;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 4px;
-}
-
-.column {
-  float: left;
-  width: 33.33%;
-  padding: 10px;
-  position:relative;
-}
-
 .column img {
   margin-top: 8px;
   vertical-align: middle;

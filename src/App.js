@@ -38,7 +38,7 @@ const PostSign = () => (
         <Route path="/signedin/create" component={headingCreateProject} />
         <hr />
       </div>
-      <div style={{height:'90%', display:'inline-block', overflow:'auto'}}>
+      <div style={{height:'90%', display: 'block', overflow:'auto'}}>
         <Route path="/signedin/active" component={ActiveProject} />
         <Route path="/signedin/inactive" component={InactiveProject} />
         <Route path="/signedin/completed" component={CompletedProject} />
