@@ -19,7 +19,8 @@ export class InactiveProject extends Component {
     this.props.actions.deleteProject(projectID)
   }
   changeProjectInfo(state){
-    this.props.actions.editProject(this.state.editingProjectID, state.projectName, state.budget);
+    console.log(state)
+    this.props.actions.editProject(this.state.editingProjectID, state.projectName, state.budget, state.description);
   }
 
   activateProject(projectID){
@@ -93,6 +94,8 @@ export const GetInactiveProjects = (props) => {
       <div className="active_project">
       <p className="project_name"> {props.projectName} </p>
       <p className="budget">Budget: {props.budget}</p>
+      <br></br>
+      <p classNmae="description"> Description: {props.description}</p>
       <p className="find_stylist">Find Your Personal Stylist</p>
       <button onClick={deleteProject} value={props.projectID}>Delete</button>
       <button onClick={editProject} value={props.projectID}>Edit</button>

@@ -37,6 +37,8 @@ const CompletedProjectBox = (props) => {
   return (
     <div className="active_project">
       <p className="project_name"> {props.projectName} </p>
+      <br></br>
+      <p classNmae="description"> Description: {props.description}</p>
       <p className="start_date">End Date: {props.date}</p>
       <p className="budget">Budget: {props.budget}</p>
       <p className="image"><img src={require('./photos/hair.png')} className="item" alt="item"></img>

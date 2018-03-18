@@ -5,8 +5,8 @@ export function createProjectSuccess(project) {
   return {type: types.CREATE_PROJECT_SUCCESS, project}
 }
 
-export function editProjectSuccess(projectID, projectName, budget){
-  return { type: types.EDIT_PROJECT_SUCCESS, projectID, projectName, budget}
+export function editProjectSuccess(projectID, projectName, budget, description){
+  return { type: types.EDIT_PROJECT_SUCCESS, projectID, projectName, budget, description}
 }
 
 export function deleteProjectSuccess(projectID){
@@ -46,10 +46,10 @@ export function activateProject(projectID){
   }
 }
 
-export function editProject(projectID, projectName, budget){
+export function editProject(projectID, projectName, budget, description){
   return function(dispatch, getState){
-    console.log('Editing project', projectID, projectName, budget);
-    dispatch(editProjectSuccess(projectID, projectName, budget))
+    console.log('Editing project', projectID, projectName, budget, description);
+    dispatch(editProjectSuccess(projectID, projectName, budget, description))
   }
 }
 

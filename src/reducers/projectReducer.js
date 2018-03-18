@@ -12,13 +12,17 @@ export default function projectReducer(state = initialStateProject, action){
       console.log(state);
       var newState = Object.assign({}, state, {projects: [...state.projects, action.project]});
       console.log(newState);
-      return newState
+    return newState
 
-      case types.EDIT_PROJECT_SUCCESS:
+    case types.EDIT_PROJECT_SUCCESS:
       newState = Object.assign({}, state, {projects: state.projects.map(
         project => {
           if(project.projectID === action.projectID){
-            return Object.assign({}, project, {projectName: action.projectName, budget: action.budget} )
+              var projectName = action.projectName? action.projectName: project.projectName
+              var budget = action.budget ? action.budget : project.budget
+              var description = action.description ? action.description : project.description
+
+            return Object.assign({}, project, {projectName: projectName, budget: budget, description: description} )
           }
           return project
         }
