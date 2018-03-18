@@ -23,7 +23,7 @@ class Messages extends Component {
     return (
       <div className="container" style={{padding: '0px', height: '100%'}}>
         <div style={{width: '25%', borderStyle: 'solid'}}>
-          <h3>Jane Doe</h3>
+          <h3>Eddie Doe</h3>
           <h4>How about this st...</h4>
         </div>
         <div style={{width: '75%', height:'100%', borderStyle: 'solid', display:'block', overflow:'hidden'}}>
